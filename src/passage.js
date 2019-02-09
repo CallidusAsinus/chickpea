@@ -7,7 +7,6 @@
 
 'use strict';
 var _ = require('underscore');
-var marked = require('marked');
 var jQuery = require('jquery');
 
 /**
@@ -81,8 +80,7 @@ function render(source) {
 		}
 	});
 
-	marked.setOptions({ smartypants: true });
-	return marked(result);
+	return result;
 };
 
 /**
