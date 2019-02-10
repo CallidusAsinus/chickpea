@@ -8,7 +8,10 @@ Twine stories and then get out of your way.
 
 Chickpea includes [jQuery](http://jquery.com) and [Underscore](http://underscorejs.org/) for you.
 
-## Documentation
+## Usage Documentation
+### Passage Links
+All double-bracketed links (`[[passage]]`, `[[displayed->passage]]`, and `[[passage<-displayed]]` are converted to functional links.
+
 ### HTML
 Passages may contain HTML. This includes `<a>`, `<div>`, `<span>`, `<script>`, `<style>`, `<img>`, `<video>`, `<audio>`, or any other valid HTML tag.
 
@@ -37,16 +40,8 @@ The above will result in something that looks like:
 
 <b>Hi there! Your random number of the day is <i>0.21317846410451302</i>. Enjoy!</b>
 
-## Changes From The Norm
-
-It uses Underscore templating to provide interactivity. Specifically, passages are rendered onscreen with this process:
-
-1. The passage source is run through Underscore's [_.template() method](http://underscorejs.org/#template). Code in `<% blocks %>` receive two special variables:
-
-	* `s`, which is a shorthand for `window.story.state`
-	* `$`, which acts like jQuery's `$` method but with one exception. If you pass it a single function, this function is run when the passage appears onscreen, with it bound to the passage DOM element.
-
-2. Comments inside `/* inline blocks */` are removed, as are `// line comments`. `//` comments remove their line break, so that:
+### Comments
+Comments inside `/* inline blocks */` are removed, as are `// line comments`. `//` comments remove their line break, so that:
 ```
 The die comes up...
 
@@ -60,8 +55,6 @@ The die comes up...
 Three!
 ```
 Line comments (that is, ones that start with //) may be used at the very start of a line. This is to avoid problems when URLs appear in the text, which might otherwise accidentally trigger a comment.
-
-3. All double-bracketed links (`[[passage]]`, `[[displayed->passage]]`, and `[[passage<-displayed]]` are converted to functional links.
 
 ## Building From Source
 
