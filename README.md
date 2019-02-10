@@ -10,7 +10,7 @@ Chickpea includes [jQuery](http://jquery.com) and [Underscore](http://underscore
 
 ## Usage Documentation
 ### Passage Links
-All double-bracketed links (`[[passage]]`, `[[displayed->passage]]`, and `[[passage<-displayed]]` are converted to functional links.
+All double-bracketed links (`[[passage]]`, `[[displayed->passage]]`, and `[[passage<-displayed]]`) are converted to functional links.
 
 ### HTML
 Passages may contain HTML. This includes `<a>`, `<div>`, `<span>`, `<script>`, `<style>`, `<img>`, `<video>`, `<audio>`, or any other valid HTML tag.
@@ -39,6 +39,28 @@ For example, the following will print a random number to a passage:
 The above will result in something that looks like:
 
 <b>Hi there! Your random number of the day is <i>0.21317846410451302</i>. Enjoy!</b>
+
+#### `story`: object
+The story object (accessible via JavaScript at `window.story` or simply `story`) is one of the global JavaScript variables created by Chickpea. It provides access to information about the current story through the properties and functions listed below. 
+
+Note: This is an incomplete list of `story` properties and functions. More detail is located at the the [snowman docs](https://twinery.org/wiki/snowman:window-story), from which much of these docs were taken.
+
+##### `story.state`: object
+An object that stores data that persists across a single user session. Any other variables will not survive the user pressing back or forward. JavaScript in passages can also access `story.state` as `s`.
+
+#### `story.render`: function(id)
+id: string | number - the ID or name of the passage you wish to render
+
+return type: string
+
+Returns the HTML source for a passage. This is most often used when embedding one passage inside another. In this instance, make sure to use <%= %> instead of <%- %> to avoid incorrectly encoding HTML entities.
+
+#### `story.show`: function(id)
+id: string | number - the ID or name of the passage you wish to show
+
+return type: undefined
+
+Displays a passage on the page, replacing the current one. If there is no passage by the name or ID passed, an exception is raised. 
 
 ### Comments
 Comments inside `/* inline blocks */` are removed, as are `// line comments`. `//` comments remove their line break, so that:
