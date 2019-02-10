@@ -61,23 +61,3 @@ id: string | number - the ID or name of the passage you wish to show
 return type: undefined
 
 Displays a passage on the page, replacing the current one. If there is no passage by the name or ID passed, an exception is raised. 
-
-### Comments
-Note: This section refers to non-JavaScript comments. The comments described below may be used *outside* of JavaScript in a Twine passage. JavaScript comments may also be used as-per-usual inside of `<%` `%>` and `<%=` `%>` blocks.
-
-Comments inside `/* inline blocks */` are removed, as are `// line comments`.
-
-`//` comments remove their line break, so that:
-```
-The die comes up...
-
-// TODO: randomize this properly
-Three!
-```
-is rendered as:
-```
-The die comes up...
-
-Three!
-```
-Line comments (that is, ones that start with `//`) may be used at the very start of a line. This is to avoid problems when URLs appear in the text, which might otherwise accidentally trigger a comment.
