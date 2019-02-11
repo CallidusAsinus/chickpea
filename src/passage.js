@@ -72,11 +72,11 @@ function render(source) {
 		/* Does this look like an external link? */
 
 		if (/^\w+:\/\/\/?\w/i.test(target)) {
-			return '<div class="link external"><a href="' + target + '">' + display + '</a></div>';
+			return '<a href="' + target + '">' + display + '</a>';
 		}
 		else {
-			return '<div class="link passage"><a href="javascript:void(0)" data-passage="' +
-				_.escape(target) + '">' + display + '</a></div>';
+			return '<a href="javascript:void(0)" data-passage="' +
+				_.escape(target) + '">' + display + '</a>';
 		}
 	});
 
