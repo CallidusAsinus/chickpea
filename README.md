@@ -55,7 +55,7 @@ For example, if the player clicks the "pickup the flute" passage link, you may t
 ```
 <% if(story.state.playerHasFlute == true) %>
 [[charm snake with flute]]
-<% } %}
+<% } %>
 ```
 
 ###### keep track of a value that changes frequently, like the player's score
