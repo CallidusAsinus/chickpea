@@ -48,6 +48,39 @@ Note: This is an incomplete list of `story` properties and functions. More detai
 ##### `story.state`: object
 An object that stores data that persists across a single user session. Any other variables will not survive the user pressing back or forward. JavaScript in passages can also access `story.state` as `s`.
 
+`story.state` can be used to do many things. A non-exhaustive list of things you can do with `story.state`:
+
+###### add a property to it when the player accesses a certain passage
+For example, if the player clicks the "pickup the flute" passage link, you may take them to a passage containing the JavaScript `<% story.state.playerHasFlute = true; %>` along with narrative writing detailing that they picked up the flute. The `story.state.playerHasFlute` property now represents that the player has acquired the flute item. On a future passage, perhaps the player comes across a venomous cobra. You want to allow the player to charm the cobra with their flute; however, what if the player never acquired the flute? One option is to use an `if` condition to only show the "charm snake with flute" passage link if `story.state.playerHasFlute == true`. That code may look something like the following:
+```
+<% if(story.state.playerHasFlute == true) %>
+[[charm snake with flute]]
+<% } %}
+```
+
+###### keep track of a value that changes frequently, like the player's score
+Perhaps you wish to score players based on their choices. If the player goes to a good passage, their score increases by 100. If the player goes to a bad passage, their score decreases by 100. 
+
+To do this, on the first passage you should initialize the score to some value (in this case, let's say 0):
+
+`<% story.state.score = 0; %>`
+
+If the player goes to a good passage, we increase the score by 100:
+
+`<% story.state.score += 100; %>`
+
+And if the player goes to a bad passasge, we decrease the score by 100:
+
+`<% story.state.score -= 100; %>`
+
+The final passage in the story should give the player their score. This can be done by printing the score variable:
+
+`Your final score is: <%= story.state.score %>`
+
+which, if the player's score is 400, would be rendered as:
+
+__`Your final score is 400`__
+
 #### `story.render`: function(id)
 id: string | number - the ID or name of the passage you wish to render
 
